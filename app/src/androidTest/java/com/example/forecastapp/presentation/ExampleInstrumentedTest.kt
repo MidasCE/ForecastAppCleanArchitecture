@@ -1,4 +1,4 @@
-package com.example.forecastapp.forecastapp
+package com.example.forecastapp.presentation
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

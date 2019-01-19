@@ -1,4 +1,4 @@
-package com.example.forecastapp.forecastapp
+package com.example.forecastapp.presentation
 
 import org.junit.Test
 
