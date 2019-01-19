@@ -2,12 +2,27 @@ package com.example.forecastapp.presentation.weather
 
 import com.example.forecastapp.domain.interactor.GetWeatherInteractor
 import com.example.forecastapp.presentation.core.SchedulerFactory
+import com.example.forecastapp.presentation.weather.viewmodel.mapper.WeatherViewModelMapper
+import io.reactivex.disposables.Disposable
 
 class WeatherPresenterImpl(private val getWeatherInteractor: GetWeatherInteractor,
-                           private val schedulerFactory: SchedulerFactory) : WeatherPresenter {
+                           private val schedulerFactory: SchedulerFactory,
+                           private val weatherViewModelMapper: WeatherViewModelMapper) : WeatherPresenter {
+
+    lateinit var weatherView: WeatherView
+
+    private var disposable: Disposable? = null
 
     override fun loadWeatherForecast() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        weatherView.showLoading()
+        disposable = getWeatherInteractor.getWeatherForecast(0.0,0.0,1)
+            .subscribeOn(schedulerFactory.io())
+            .observeOn(schedulerFactory.main())
+            .subscribe ({ weather ->
+                weatherViewModelMapper.mapToViewModel(weather)
+            }, {
+                weatherView.showError()
+            })
     }
 
 

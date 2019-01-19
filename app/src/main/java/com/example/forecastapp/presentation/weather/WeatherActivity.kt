@@ -3,7 +3,7 @@ package com.example.forecastapp.presentation.weather
 import android.app.Activity
 import android.os.Bundle
 import com.example.forecastapp.presentation.R
-import com.example.forecastapp.presentation.weather.di.WeatherActivityComponent
+import com.example.forecastapp.presentation.weather.viewmodel.WeatherViewModel
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -16,6 +16,11 @@ class WeatherActivity : Activity(), WeatherView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_main)
         AndroidInjection.inject(this)
+        presenter.loadWeatherForecast()
+    }
+
+    private fun initView() {
+
     }
 
     override fun showError() {
@@ -26,7 +31,11 @@ class WeatherActivity : Activity(), WeatherView {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun showData() {
+    override fun hideLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showForecastWeather(weatherViewModel: WeatherViewModel) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

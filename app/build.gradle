@@ -34,7 +34,6 @@ dependencies {
     compileOnly applicationDependencies.javaxInject
 
     implementation applicationDependencies.kotlin
-    implementation applicationDependencies.kotterknife
     implementation applicationDependencies.appCompat
     implementation applicationDependencies.constraintLayout
     implementation applicationDependencies.cardView
@@ -47,6 +46,9 @@ dependencies {
     implementation applicationDependencies.rxAndroid
     implementation applicationDependencies.rxKotlin
     implementation applicationDependencies.okhttpLoggingInterceptor
+    implementation applicationDependencies.parcelerApi
+    annotationProcessor applicationDependencies.parceler
+
 
     testImplementation unitTestDependencies.kotlin
     testImplementation unitTestDependencies.kotlinTest
