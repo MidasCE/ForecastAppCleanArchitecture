@@ -12,7 +12,7 @@ class GetWeatherInteractorImpl(
     private val weatherEntityMapper: WeatherEntityMapper
 ) : GetWeatherInteractor {
 
-    override fun getWeatherForecast(latitude: Double, longitude: Double, days: Int): Single<Weather> {
+    override fun getWeatherForecast(days: Int): Single<Weather> {
         return locationRepository.getCurrentLocation().flatMap { coordinate ->
             weatherForecastRepository.getWeatherForecast(coordinate.latitude, coordinate.longitude, days).map {
                 weatherEntityMapper.mapToDomainModel(it)

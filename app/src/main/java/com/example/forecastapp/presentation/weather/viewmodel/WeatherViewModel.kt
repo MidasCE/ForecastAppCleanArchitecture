@@ -4,7 +4,7 @@ import org.parceler.Parcel
 
 @Parcel
 data class WeatherViewModel (
-    val locationName: String,
-    val currentTemperature: String,
-    val forecastWeatherViewModelList: List<ForecastWeatherViewModel>
+    var locationName: String,
+    var currentTemperature: String,
+    var forecastWeatherViewModelList: List<ForecastWeatherViewModel>
 )

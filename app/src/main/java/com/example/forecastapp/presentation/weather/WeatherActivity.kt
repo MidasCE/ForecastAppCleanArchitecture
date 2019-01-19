@@ -23,13 +23,13 @@ class WeatherActivity : Activity(), WeatherView {
     @Inject
     lateinit var adapter: ForecastWeatherListAdapter
 
-    lateinit var errorView: ViewGroup
-    lateinit var reportView: ViewGroup
-    lateinit var loadingView: ViewGroup
-    lateinit var locationTextView: TextView
-    lateinit var currentTempTextView: TextView
-    lateinit var retryButton: Button
-    lateinit var weatherRecyclerView: RecyclerView
+    private lateinit var errorView: ViewGroup
+    private lateinit var reportView: ViewGroup
+    private lateinit var loadingView: ViewGroup
+    private lateinit var locationTextView: TextView
+    private lateinit var currentTempTextView: TextView
+    private lateinit var retryButton: Button
+    private lateinit var weatherRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,8 @@ class WeatherActivity : Activity(), WeatherView {
         errorView = findViewById(R.id.errorView)
         reportView = findViewById(R.id.reportView)
         loadingView = findViewById(R.id.loadingView)
-        loadingView = findViewById(R.id.loadingView)
+        locationTextView = findViewById(R.id.locationTextView)
+        currentTempTextView = findViewById(R.id.currentTempTextView)
         weatherRecyclerView = findViewById(R.id.weatherRecyclerView)
         retryButton = findViewById(R.id.retryButton)
 

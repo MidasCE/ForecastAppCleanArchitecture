@@ -19,6 +19,7 @@ class LocationRepositoryImpl(private val context: Context) : LocationRepository 
     private var locationManager: LocationManager =
         context.getSystemService(Context.LOCATION_SERVICE) as android.location.LocationManager
 
+    @SuppressLint("MissingPermission")
     override fun getCurrentLocation(): Single<CoordinateEntity> {
         if (isPermissionGranted()) {
             if (!isLocationServiceEnabled())

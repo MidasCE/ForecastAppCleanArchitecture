@@ -14,7 +14,7 @@ class WeatherPresenterImpl(private val getWeatherInteractor: GetWeatherInteracto
 
     override fun loadWeatherForecast() {
         weatherView.showLoading()
-        disposable = getWeatherInteractor.getWeatherForecast(0.0,0.0,1)
+        disposable = getWeatherInteractor.getWeatherForecast(4)
             .subscribeOn(schedulerFactory.io())
             .observeOn(schedulerFactory.main())
             .subscribe ({ weather ->
