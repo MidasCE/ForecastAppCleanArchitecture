@@ -9,14 +9,12 @@ import javax.inject.Inject
 
 class WeatherActivity : Activity(), WeatherView {
 
-
     @Inject
     lateinit var presenter: WeatherPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_main)
-
         AndroidInjection.inject(this)
     }
 

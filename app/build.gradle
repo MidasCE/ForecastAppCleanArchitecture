@@ -44,6 +44,8 @@ dependencies {
     implementation applicationDependencies.dagger
     implementation applicationDependencies.daggerSupport
     implementation applicationDependencies.retrofit
+    implementation applicationDependencies.rxAndroid
+    implementation applicationDependencies.rxKotlin
     implementation applicationDependencies.okhttpLoggingInterceptor
 
     testImplementation unitTestDependencies.kotlin

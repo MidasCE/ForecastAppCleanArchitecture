@@ -21,6 +21,8 @@ ext {
     javaxInject_version = '1'
     retrofit_version = '2.3.0'
     okhttp_logging_interceptor_version = '3.8.1'
+    rx_android_version = '2.1.0'
+    rx_kotlin_version = '2.3.0'
 
     //Unit Testing
     robolectric_version = '3.8'
@@ -47,6 +49,8 @@ ext {
             javaxAnnotation         : "javax.annotation:jsr250-api:$javaxAnnotations_version",
             javaxInject             : "javax.inject:javax.inject:$javaxInject_version",
             retrofit                : "com.squareup.retrofit2:converter-gson:$retrofit_version",
+            rxAndroid               : "io.reactivex.rxjava2:rxandroid:$rx_android_version",
+            rxKotlin                : "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version",
             okhttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor_version",
     ]
 
