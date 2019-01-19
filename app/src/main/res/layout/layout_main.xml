@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent">
-    <include
-</android.support.constraint.ConstraintLayout>
+    <include android:id="@+id/errorView"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:visibility="gone"
+             layout="@layout/layout_error"/>
+
+    <include android:id="@+id/loadingView"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:visibility="gone"
+             layout="@layout/layout_loading"/>
+
+    <include android:id="@+id/reportView"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:visibility="gone"
+             layout="@layout/layout_weather_report"/>
+
+</FrameLayout>

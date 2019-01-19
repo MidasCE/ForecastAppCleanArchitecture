@@ -7,9 +7,8 @@ import io.reactivex.disposables.Disposable
 
 class WeatherPresenterImpl(private val getWeatherInteractor: GetWeatherInteractor,
                            private val schedulerFactory: SchedulerFactory,
-                           private val weatherViewModelMapper: WeatherViewModelMapper) : WeatherPresenter {
-
-    lateinit var weatherView: WeatherView
+                           private val weatherViewModelMapper: WeatherViewModelMapper,
+                           private val weatherView: WeatherView) : WeatherPresenter {
 
     private var disposable: Disposable? = null
 
@@ -19,11 +18,10 @@ class WeatherPresenterImpl(private val getWeatherInteractor: GetWeatherInteracto
             .subscribeOn(schedulerFactory.io())
             .observeOn(schedulerFactory.main())
             .subscribe ({ weather ->
-                weatherViewModelMapper.mapToViewModel(weather)
+                weatherView.showForecastWeather(weatherViewModelMapper.mapToViewModel(weather))
             }, {
                 weatherView.showError()
             })
     }
-
 
 }

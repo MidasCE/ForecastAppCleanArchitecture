@@ -1,16 +1,15 @@
 package com.example.forecastapp.presentation.weather.di
 
+import com.example.forecastapp.data.repository.LocationRepository
 import com.example.forecastapp.data.repository.WeatherForecastRepository
 import com.example.forecastapp.domain.interactor.GetWeatherInteractor
 import com.example.forecastapp.domain.interactor.GetWeatherInteractorImpl
 import com.example.forecastapp.domain.mapper.WeatherEntityMapper
 import com.example.forecastapp.domain.mapper.WeatherEntityMapperImpl
 import com.example.forecastapp.presentation.core.SchedulerFactory
-import com.example.forecastapp.presentation.weather.WeatherActivity
-import com.example.forecastapp.presentation.weather.WeatherPresenter
-import com.example.forecastapp.presentation.weather.WeatherPresenterImpl
-import com.example.forecastapp.presentation.weather.WeatherView
+import com.example.forecastapp.presentation.weather.*
 import com.example.forecastapp.presentation.weather.viewmodel.mapper.WeatherViewModelMapper
+import com.example.forecastapp.presentation.weather.viewmodel.mapper.WeatherViewModelMapperImpl
 import dagger.Module
 import dagger.Provides
 
@@ -29,11 +28,17 @@ class WeatherActivityModule {
 
     @Provides
     fun provideGetWeatherInteractor(weatherForecastRepository: WeatherForecastRepository,
+                                    locationRepository: LocationRepository,
                                     weatherEntityMapper: WeatherEntityMapper): GetWeatherInteractor
-            = GetWeatherInteractorImpl(weatherForecastRepository, weatherEntityMapper)
+            = GetWeatherInteractorImpl(weatherForecastRepository, locationRepository, weatherEntityMapper)
 
     @Provides
-    fun provideWeatherEntityMapper(): WeatherEntityMapper
-            = WeatherEntityMapperImpl()
+    fun provideForecastWeatherListAdapter(): ForecastWeatherListAdapter = ForecastWeatherListAdapter()
+
+    @Provides
+    fun provideWeatherViewModelMapper(): WeatherViewModelMapper = WeatherViewModelMapperImpl()
+
+    @Provides
+    fun provideWeatherEntityMapper(): WeatherEntityMapper = WeatherEntityMapperImpl()
 
 }

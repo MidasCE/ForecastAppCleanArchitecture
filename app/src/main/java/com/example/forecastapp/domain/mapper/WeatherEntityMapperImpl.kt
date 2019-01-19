@@ -1,6 +1,6 @@
 package com.example.forecastapp.domain.mapper
 
-import com.example.forecastapp.data.response.WeatherResponse
+import com.example.forecastapp.data.entity.WeatherResponse
 import com.example.forecastapp.domain.model.*
 
 class WeatherEntityMapperImpl : WeatherEntityMapper {

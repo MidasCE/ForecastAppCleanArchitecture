@@ -10,8 +10,9 @@ import android.widget.TextView
 import com.example.forecastapp.presentation.R
 import com.example.forecastapp.presentation.weather.viewmodel.ForecastWeatherViewModel
 
-class ForecastWeatherListAdapter(private val weatherList: List<ForecastWeatherViewModel>)
-    : RecyclerView.Adapter<ForecastWeatherListAdapter.ViewHolder>() {
+class ForecastWeatherListAdapter : RecyclerView.Adapter<ForecastWeatherListAdapter.ViewHolder>() {
+
+    var weatherList: List<ForecastWeatherViewModel> = mutableListOf()
 
     @SuppressLint("InflateParams")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ForecastWeatherListAdapter.ViewHolder {

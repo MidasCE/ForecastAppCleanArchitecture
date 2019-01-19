@@ -8,7 +8,5 @@ interface WeatherView {
 
     fun showLoading()
 
-    fun hideLoading()
-
     fun showForecastWeather(weatherViewModel: WeatherViewModel)
 }

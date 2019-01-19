@@ -1,6 +1,9 @@
 package com.example.forecastapp.di
 
+import android.content.Context
 import com.example.forecastapp.data.WeatherAPI
+import com.example.forecastapp.data.repository.LocationRepository
+import com.example.forecastapp.data.repository.LocationRepositoryImpl
 import com.example.forecastapp.data.repository.WeatherForecastRepository
 import com.example.forecastapp.data.repository.WeatherForecastRepositoryImpl
 import com.example.forecastapp.data.serializer.DateDeserializer
@@ -12,6 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 import com.google.gson.GsonBuilder
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import java.util.*
 
 
@@ -22,12 +26,19 @@ class NetworkModule {
     @Singleton
     fun provideWeatherAPI(retrofit: Retrofit): WeatherAPI = retrofit.create<WeatherAPI>(WeatherAPI::class.java)
 
+
+    @Provides
+    @Singleton
+    fun provideLocationRepository(context: Context): LocationRepository {
+        return LocationRepositoryImpl(context)
+    }
     @Provides
     @Singleton
     fun provideRetrofit(gson: Gson): Retrofit = Retrofit.Builder()
             .baseUrl("http://api.apixu.com/v1/")
             .client(OkHttpClient.Builder().build())
             .addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
 
     @Provides
