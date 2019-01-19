@@ -11,9 +11,6 @@ interface WeatherAPI {
         const val API_KEY = "fcf787aaf02346f3be341031191901"
     }
 
-    @GET("current.json")
-    fun getCurrentWeather(@Query("key") key: String = API_KEY, @Query("q") q: String?): Single<WeatherResponse>
-
     @GET("forecast.json")
     fun getWeatherForecast(@Query("key") key: String = API_KEY, @Query("q") q: String?, @Query("days") days: Int):
             Single<WeatherResponse>

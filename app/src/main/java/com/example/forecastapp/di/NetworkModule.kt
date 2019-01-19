@@ -38,6 +38,6 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideWeatherForecastRepository(retrofit: Retrofit): WeatherForecastRepository =
-        WeatherForecastRepositoryImpl(retrofit)
+    fun provideWeatherForecastRepository(weatherAPI: WeatherAPI): WeatherForecastRepository =
+        WeatherForecastRepositoryImpl(weatherAPI)
 }
