@@ -1,7 +1,11 @@
 package com.example.forecastapp.presentation.weather
 
+import android.Manifest
+import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.app.Activity
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View.GONE
@@ -39,6 +43,10 @@ class WeatherActivity : Activity(), WeatherView {
     private lateinit var retryButton: Button
     private lateinit var weatherRecyclerView: RecyclerView
     private lateinit var rotateAnimation: Animation
+
+    companion object {
+        const val REQUEST_CODE_ASK_PERMISSIONS = 123
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -119,5 +127,27 @@ class WeatherActivity : Activity(), WeatherView {
 
         adapter.weatherList = list
         adapter.notifyDataSetChanged()
+    }
+
+    override fun navigateToPermissionSettings() {
+        ActivityCompat.requestPermissions(this,
+                arrayOf(
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                ),
+                REQUEST_CODE_ASK_PERMISSIONS)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            REQUEST_CODE_ASK_PERMISSIONS -> {
+                // If request is cancelled, the result arrays are empty.
+                presenter.onReceivedLocationPermissionResponse(
+                        (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                )
+                return
+            }
+        }
     }
 }

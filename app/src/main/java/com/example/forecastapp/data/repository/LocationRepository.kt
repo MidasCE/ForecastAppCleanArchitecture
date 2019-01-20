@@ -5,5 +5,7 @@ import io.reactivex.Single
 
 interface LocationRepository {
 
+    fun isPermissionGranted() : Boolean
+
     fun getCurrentLocation() : Single<CoordinateEntity>
 }

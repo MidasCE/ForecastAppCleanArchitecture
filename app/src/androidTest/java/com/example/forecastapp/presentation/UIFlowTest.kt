@@ -11,13 +11,7 @@ import org.junit.runner.RunWith
 import android.support.test.rule.ActivityTestRule
 import com.example.forecastapp.presentation.weather.WeatherActivity
 import org.junit.Rule
-import android.support.test.InstrumentationRegistry.getTargetContext
-import android.os.Build.VERSION_CODES
-import android.os.Build.VERSION
-import android.os.Build.VERSION.SDK_INT
-import android.support.test.InstrumentationRegistry.getInstrumentation
-import org.junit.Before
-
+import android.support.test.rule.GrantPermissionRule
 
 @RunWith(AndroidJUnit4::class)
 class UIFlowTest {
@@ -26,13 +20,11 @@ class UIFlowTest {
     @JvmField
     val activityRule = ActivityTestRule<WeatherActivity>(WeatherActivity::class.java)
 
-    @Before
-    fun grantPermission() {
-        getInstrumentation().uiAutomation.executeShellCommand(
-                "pm grant " + getTargetContext().packageName
-                        + " android.permission.ACCESS_FINE_LOCATION")
-
-    }
+    @Rule
+    @JvmField
+    val permissionRule: GrantPermissionRule = GrantPermissionRule.grant(
+            android.Manifest.permission.ACCESS_FINE_LOCATION,
+            android.Manifest.permission.ACCESS_COARSE_LOCATION)
 
     @Test
     fun checkDataLoadProperly() {

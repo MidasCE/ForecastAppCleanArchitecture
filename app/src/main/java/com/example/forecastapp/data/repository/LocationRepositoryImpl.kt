@@ -50,7 +50,7 @@ class LocationRepositoryImpl(private val context: Context) : LocationRepository 
         }
     }
 
-    private fun isPermissionGranted(): Boolean {
+    override fun isPermissionGranted(): Boolean {
         for (permission in requiredPermissions) {
             if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED)
                 return false

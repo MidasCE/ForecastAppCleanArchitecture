@@ -4,6 +4,7 @@ import com.example.forecastapp.data.repository.LocationRepository
 import com.example.forecastapp.data.repository.WeatherForecastRepository
 import com.example.forecastapp.domain.interactor.GetWeatherInteractor
 import com.example.forecastapp.domain.interactor.GetWeatherInteractorImpl
+import com.example.forecastapp.domain.interactor.LocationPermissionInteractor
 import com.example.forecastapp.domain.mapper.WeatherEntityMapper
 import com.example.forecastapp.domain.mapper.WeatherEntityMapperImpl
 import com.example.forecastapp.presentation.core.SchedulerFactory
@@ -21,10 +22,12 @@ class WeatherActivityModule {
 
     @Provides
     fun provideWeatherPresenter(getWeatherInteractor: GetWeatherInteractor,
+                                locationPermissionInteractor: LocationPermissionInteractor,
                                 schedulerFactory: SchedulerFactory,
                                 weatherViewModelMapper: WeatherViewModelMapper,
                                 weatherView: WeatherView): WeatherPresenter
-            = WeatherPresenterImpl(getWeatherInteractor, schedulerFactory, weatherViewModelMapper, weatherView)
+            = WeatherPresenterImpl(getWeatherInteractor, locationPermissionInteractor, schedulerFactory,
+            weatherViewModelMapper, weatherView)
 
     @Provides
     fun provideGetWeatherInteractor(weatherForecastRepository: WeatherForecastRepository,

@@ -2,6 +2,9 @@ package com.example.forecastapp.di
 
 import android.app.Application
 import android.content.Context
+import com.example.forecastapp.data.repository.LocationRepository
+import com.example.forecastapp.domain.interactor.LocationPermissionInteractor
+import com.example.forecastapp.domain.interactor.LocationPermissionInteractorImpl
 import com.example.forecastapp.presentation.core.SchedulerFactory
 import com.example.forecastapp.presentation.core.SchedulerFactoryImpl
 import com.example.forecastapp.presentation.weather.di.WeatherActivityComponent
@@ -28,6 +31,11 @@ class ApplicationModule {
     @Singleton
     @Named("io")
     fun provideIoScheduler(): Scheduler = Schedulers.io()
+
+    @Provides
+    @Singleton
+    fun provideLocationPermissionInteractor(locationRepository: LocationRepository): LocationPermissionInteractor
+            = LocationPermissionInteractorImpl(locationRepository)
 
     @Provides
     @Singleton
