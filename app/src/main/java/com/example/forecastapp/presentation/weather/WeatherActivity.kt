@@ -99,6 +99,11 @@ class WeatherActivity : Activity(), WeatherView {
         updateForecastWeatherList(weatherViewModel.forecastWeatherViewModelList)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onActivityDestroy()
+    }
+
     private fun updateCurrentWeather(weatherViewModel: WeatherViewModel) {
         locationTextView.text = weatherViewModel.locationName
         currentTempTextView.text = weatherViewModel.currentTemperature

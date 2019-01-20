@@ -40,7 +40,7 @@ class GetWeatherInteractorTest {
 
     private lateinit var getWeatherInteractorImpl: GetWeatherInteractorImpl
 
-    internal var scheduler = TestScheduler()
+    private var scheduler = TestScheduler()
 
     @Before
     fun setUp() {

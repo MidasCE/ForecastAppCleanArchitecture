@@ -3,6 +3,7 @@ package com.example.forecastapp.presentation.weather
 import com.example.forecastapp.domain.interactor.GetWeatherInteractor
 import com.example.forecastapp.presentation.core.SchedulerFactory
 import com.example.forecastapp.presentation.weather.viewmodel.mapper.WeatherViewModelMapper
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 class WeatherPresenterImpl(private val getWeatherInteractor: GetWeatherInteractor,
@@ -10,11 +11,11 @@ class WeatherPresenterImpl(private val getWeatherInteractor: GetWeatherInteracto
                            private val weatherViewModelMapper: WeatherViewModelMapper,
                            private val weatherView: WeatherView) : WeatherPresenter {
 
-    private var disposable: Disposable? = null
+    private var compositeDisposable = CompositeDisposable()
 
     override fun loadWeatherForecast() {
         weatherView.showLoading()
-        disposable = getWeatherInteractor.getWeatherForecast(4)
+        val disposable = getWeatherInteractor.getWeatherForecast(4)
             .subscribeOn(schedulerFactory.io())
             .observeOn(schedulerFactory.main())
             .subscribe ({ weather ->
@@ -22,6 +23,12 @@ class WeatherPresenterImpl(private val getWeatherInteractor: GetWeatherInteracto
             }, {
                 weatherView.showError()
             })
+
+        compositeDisposable.add(disposable)
+    }
+
+    override fun onActivityDestroy() {
+        compositeDisposable.clear()
     }
 
 }
