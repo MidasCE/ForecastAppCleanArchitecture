@@ -26,8 +26,7 @@ class DateDeserializer : JsonDeserializer<Date> {
 
     companion object {
         private val DATE_FORMATS = arrayOf(
-            "yyyy-MM-dd",
-            "yyyy-MM-dd HH:mm"
+            "yyyy-MM-dd"
         )
     }
 }
