@@ -8,6 +8,10 @@ import org.hamcrest.Matcher
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers
 import java.lang.Thread.sleep
+import android.support.v7.widget.RecyclerView
+import android.support.test.espresso.matcher.BoundedMatcher
+import org.hamcrest.Description
+
 
 class Extension {
     companion object {
@@ -36,6 +40,18 @@ class Extension {
                             true, Matchers.not(Matchers.anything()))
                 }
                 sleep(100)
+            }
+        }
+
+        fun recyclerViewSizeMatcher(matcherSize: Int): Matcher<View> {
+            return object : BoundedMatcher<View, RecyclerView>(RecyclerView::class.java) {
+                override fun describeTo(description: Description) {
+                    description.appendText("with recycler view size: $matcherSize")
+                }
+
+                override fun matchesSafely(recyclerView: RecyclerView): Boolean {
+                    return matcherSize == recyclerView.adapter!!.itemCount
+                }
             }
         }
     }

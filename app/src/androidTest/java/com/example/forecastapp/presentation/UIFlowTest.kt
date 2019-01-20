@@ -12,6 +12,7 @@ import android.support.test.rule.ActivityTestRule
 import com.example.forecastapp.presentation.weather.WeatherActivity
 import org.junit.Rule
 import android.support.test.rule.GrantPermissionRule
+import com.example.forecastapp.presentation.Extension.Companion.recyclerViewSizeMatcher
 
 @RunWith(AndroidJUnit4::class)
 class UIFlowTest {
@@ -33,5 +34,6 @@ class UIFlowTest {
 
         onView(withId(R.id.currentTempTextView)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
         onView(withId(R.id.weatherRecyclerView)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+        onView(withId(R.id.weatherRecyclerView)).check(matches(recyclerViewSizeMatcher(4)))
     }
 }
