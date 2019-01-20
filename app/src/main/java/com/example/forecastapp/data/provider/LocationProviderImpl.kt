@@ -1,17 +1,34 @@
-package com.example.forecastapp.data.repository
+package com.example.forecastapp.data.provider
 
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
+import android.location.LocationListener
 import android.location.LocationManager
+import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.example.forecastapp.data.entity.CoordinateEntity
 import io.reactivex.Single
 import java.lang.Exception
 
-class LocationRepositoryImpl(private val context: Context) : LocationRepository {
+class LocationProviderImpl(private val context: Context) : LocationProvider, LocationListener {
+    override fun onLocationChanged(p0: Location?) {
+
+    }
+
+    override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
+
+    }
+
+    override fun onProviderEnabled(p0: String?) {
+
+    }
+
+    override fun onProviderDisabled(p0: String?) {
+
+    }
 
     private val requiredPermissions =
         listOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -32,8 +49,10 @@ class LocationRepositoryImpl(private val context: Context) : LocationRepository 
             var location: Location? = null
 
             if (isNetworkProviderEnabled()) {
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0F, this)
                 location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
             } else if (isGpsProviderEnabled()) {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0F, this)
                 location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
             }
 

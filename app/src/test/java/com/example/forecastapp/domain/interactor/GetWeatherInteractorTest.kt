@@ -4,7 +4,7 @@ import com.example.forecastapp.data.entity.CoordinateEntity
 import com.example.forecastapp.data.entity.CurrentWeatherEntity
 import com.example.forecastapp.data.entity.LocationEntity
 import com.example.forecastapp.data.entity.WeatherResponse
-import com.example.forecastapp.data.repository.LocationRepository
+import com.example.forecastapp.data.provider.LocationProvider
 import com.example.forecastapp.data.repository.WeatherForecastRepository
 import com.example.forecastapp.domain.mapper.WeatherEntityMapper
 import com.example.forecastapp.domain.model.CurrentWeather
@@ -30,7 +30,7 @@ class GetWeatherInteractorTest {
     lateinit var weatherForecastRepository: WeatherForecastRepository
 
     @Mock
-    lateinit var locationRepository: LocationRepository
+    lateinit var locationRepository: LocationProvider
 
     @Mock
     lateinit var weatherEntityMapper: WeatherEntityMapper

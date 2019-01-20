@@ -1,6 +1,6 @@
 package com.example.forecastapp.domain.interactor
 
-import com.example.forecastapp.data.repository.LocationRepository
+import com.example.forecastapp.data.provider.LocationProvider
 import com.nhaarman.mockito_kotlin.whenever
 import org.amshove.kluent.`should equal`
 import org.junit.Before
@@ -13,7 +13,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class LocationPermissionInteractorTest {
 
     @Mock
-    lateinit var locationRepository: LocationRepository
+    lateinit var locationRepository: LocationProvider
 
     private lateinit var locationPermissionInteractorImpl: LocationPermissionInteractorImpl
 

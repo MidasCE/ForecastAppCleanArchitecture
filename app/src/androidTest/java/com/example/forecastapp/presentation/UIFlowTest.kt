@@ -30,5 +30,8 @@ class UIFlowTest {
     fun checkDataLoadProperly() {
         Extension.waitUntilViewMatched(withId(R.id.reportView), matches(isDisplayed()), 500)
         onView(withId(R.id.reportView)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+
+        onView(withId(R.id.currentTempTextView)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+        onView(withId(R.id.weatherRecyclerView)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
     }
 }

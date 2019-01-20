@@ -2,8 +2,8 @@ package com.example.forecastapp.di
 
 import android.content.Context
 import com.example.forecastapp.data.WeatherAPI
-import com.example.forecastapp.data.repository.LocationRepository
-import com.example.forecastapp.data.repository.LocationRepositoryImpl
+import com.example.forecastapp.data.provider.LocationProvider
+import com.example.forecastapp.data.provider.LocationProviderImpl
 import com.example.forecastapp.data.repository.WeatherForecastRepository
 import com.example.forecastapp.data.repository.WeatherForecastRepositoryImpl
 import com.example.forecastapp.data.serializer.DateDeserializer
@@ -29,8 +29,8 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideLocationRepository(context: Context): LocationRepository {
-        return LocationRepositoryImpl(context)
+    fun provideLocationRepository(context: Context): LocationProvider {
+        return LocationProviderImpl(context)
     }
     @Provides
     @Singleton

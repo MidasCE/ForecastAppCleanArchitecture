@@ -1,9 +1,9 @@
-package com.example.forecastapp.data.repository
+package com.example.forecastapp.data.provider
 
 import com.example.forecastapp.data.entity.CoordinateEntity
 import io.reactivex.Single
 
-interface LocationRepository {
+interface LocationProvider {
 
     fun isPermissionGranted() : Boolean
 

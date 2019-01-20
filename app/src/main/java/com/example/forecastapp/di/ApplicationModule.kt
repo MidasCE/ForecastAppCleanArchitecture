@@ -2,7 +2,7 @@ package com.example.forecastapp.di
 
 import android.app.Application
 import android.content.Context
-import com.example.forecastapp.data.repository.LocationRepository
+import com.example.forecastapp.data.provider.LocationProvider
 import com.example.forecastapp.domain.interactor.LocationPermissionInteractor
 import com.example.forecastapp.domain.interactor.LocationPermissionInteractorImpl
 import com.example.forecastapp.presentation.core.SchedulerFactory
@@ -34,7 +34,7 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideLocationPermissionInteractor(locationRepository: LocationRepository): LocationPermissionInteractor
+    fun provideLocationPermissionInteractor(locationRepository: LocationProvider): LocationPermissionInteractor
             = LocationPermissionInteractorImpl(locationRepository)
 
     @Provides

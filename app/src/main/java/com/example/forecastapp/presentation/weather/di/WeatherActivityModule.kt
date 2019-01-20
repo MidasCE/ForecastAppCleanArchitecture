@@ -1,6 +1,6 @@
 package com.example.forecastapp.presentation.weather.di
 
-import com.example.forecastapp.data.repository.LocationRepository
+import com.example.forecastapp.data.provider.LocationProvider
 import com.example.forecastapp.data.repository.WeatherForecastRepository
 import com.example.forecastapp.domain.interactor.GetWeatherInteractor
 import com.example.forecastapp.domain.interactor.GetWeatherInteractorImpl
@@ -31,7 +31,7 @@ class WeatherActivityModule {
 
     @Provides
     fun provideGetWeatherInteractor(weatherForecastRepository: WeatherForecastRepository,
-                                    locationRepository: LocationRepository,
+                                    locationRepository: LocationProvider,
                                     weatherEntityMapper: WeatherEntityMapper): GetWeatherInteractor
             = GetWeatherInteractorImpl(weatherForecastRepository, locationRepository, weatherEntityMapper)
 
