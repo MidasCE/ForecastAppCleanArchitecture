@@ -1,7 +1,6 @@
 package com.example.forecastapp.presentation.weather
 
 import android.Manifest
-import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
